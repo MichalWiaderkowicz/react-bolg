@@ -7,6 +7,7 @@ const createActionName = (actionName) => `app/posts/${actionName}`;
 const POST_REMOVE = createActionName("POST_REMOVE");
 
 // action creators
+export const postRemove = (payload) => ({ type: POST_REMOVE, payload });
 const postsReducer = (statePart = [], action) => {
   switch (action.type) {
     case POST_REMOVE:
