@@ -4,10 +4,10 @@ import Home from "./components/pages/Home/Home";
 import About from "./components/pages/About/About";
 import EditPost from "./components/pages/EditPost/EditPost";
 import NotFound from "./components/pages/NotFound/NotFound";
-import Post from "./components/pages/Post/Post";
 import { Container } from "react-bootstrap";
 import Footer from "./components/views/Footer/Footer";
 import { Header } from "./components/views/Header/Header";
+import Post from "./components/Features/Post/Post";
 
 function App() {
   return (
