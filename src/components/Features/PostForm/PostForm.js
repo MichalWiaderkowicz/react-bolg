@@ -62,7 +62,7 @@ const PostForm = ({ action, actionText, ...props }) => {
         />
       </Form.Group>
       <Button variant="primary" type="submit">
-        Add post
+        Edit post
       </Button>
     </Form>
   );
