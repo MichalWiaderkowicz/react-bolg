@@ -1,5 +1,8 @@
 import { useState } from "react";
 import { Button, Form } from "react-bootstrap";
+import { useDispatch } from "react-redux";
+import { addPost } from "../../../redux/postsRedux";
+import { useNavigate } from "react-router-dom";
 
 const AddPostForm = () => {
   const [title, setTitle] = useState("");
@@ -7,8 +10,24 @@ const AddPostForm = () => {
   const [publishedDate, setPublishedDate] = useState("");
   const [shortDescription, setShortDescription] = useState("");
   const [content, setContent] = useState("");
+
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    dispatch(
+      addPost({ title, author, publishedDate, shortDescription, content })
+    );
+    setTitle("");
+    setAuthor("");
+    setPublishedDate("");
+    setShortDescription("");
+    setContent("");
+    navigate("/");
+  };
   return (
-    <Form>
+    <Form onSubmit={handleSubmit}>
       <Form.Group className="m-auto w-75 p-3">
         <Form.Label>Title</Form.Label>
         <Form.Control
