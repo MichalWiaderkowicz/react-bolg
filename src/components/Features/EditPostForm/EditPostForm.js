@@ -4,14 +4,14 @@ import { Navigate, useNavigate } from "react-router-dom";
 import PostForm from "../PostForm/PostForm";
 
 const EditPostForm = () => {
-  const Id = window.location.pathname.split("/").filter(Boolean).pop();
-  const editedPost = useSelector((state) => getPost(state, Id));
+  const id = window.location.pathname.split("/").filter(Boolean).pop();
+  const editedPost = useSelector((state) => getPost(state, id));
 
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
   const handleSubmit = (post) => {
-    dispatch(editPost({ ...post, Id }));
+    dispatch(editPost({ ...post, id }));
     navigate("/");
   };
 
