@@ -45,7 +45,10 @@ const Post = () => {
             {post.publishedDate}
           </p>
           <br />
-          <p className="mb-0">{post.shortDescription}</p>
+          <p
+            className="mb-0"
+            dangerouslySetInnerHTML={{ __html: post.content }}
+          />
         </div>
         <Modal
           show={showModal}
