@@ -15,9 +15,18 @@ const PostForm = ({ action, actionText, ...props }) => {
     props.shortDescription || ""
   );
   const [content, setContent] = useState(props.content || "");
+  const [dateError, setDateError] = useState(false);
+  const [contentError, setContentError] = useState(false);
+
+  const emptyQuill = "<p><br></p>";
 
   const handleSubmit = () => {
-    action({ title, author, publishedDate, shortDescription, content });
+    if (content === emptyQuill) return setContent("");
+    setContentError(!content);
+    setDateError(!publishedDate);
+    if (content && publishedDate) {
+      action({ title, author, publishedDate, shortDescription, content });
+    }
   };
 
   const {
@@ -64,6 +73,11 @@ const PostForm = ({ action, actionText, ...props }) => {
           selected={publishedDate}
           onChange={(publishedDate) => setPublishedDate(publishedDate)}
         />
+        {dateError && (
+          <small className="d-block form-text text-danger mt-2">
+            This field is required
+          </small>
+        )}
       </Form.Group>
       <Form.Group className="m-auto w-75 p-3">
         <Form.Label>Short description</Form.Label>
@@ -84,6 +98,11 @@ const PostForm = ({ action, actionText, ...props }) => {
       <Form.Group className="m-auto w-75 p-3">
         <Form.Label>Main content</Form.Label>
         <ReactQuill theme="snow" value={content} onChange={setContent} />
+        {contentError && (
+          <small className="d-block form-text text-danger mt-2">
+            Content can't be empty
+          </small>
+        )}
       </Form.Group>
       <Button variant="primary" type="submit">
         Edit post
