@@ -3,6 +3,7 @@ import { getPost, postRemove } from "../../../redux/postsRedux";
 import { Button, Modal } from "react-bootstrap";
 import { NavLink, Navigate } from "react-router-dom";
 import { useState } from "react";
+import dateToStr from "../../../utils/dateToStr";
 
 const Post = () => {
   const dispatch = useDispatch();
@@ -17,6 +18,8 @@ const Post = () => {
     e.preventDefault();
     dispatch(postRemove(pathId));
   };
+
+  const dateStr = dateToStr(post.publishedDate);
 
   if (!post) return <Navigate to="/" />;
   else
@@ -42,7 +45,7 @@ const Post = () => {
           </p>
           <p className="mb-0">
             Published:
-            {post.publishedDate}
+            {dateStr}
           </p>
           <br />
           <p

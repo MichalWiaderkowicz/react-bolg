@@ -3,6 +3,8 @@ import PropTypes from "prop-types";
 import { useState } from "react";
 import ReactQuill from "react-quill";
 import "react-quill/dist/quill.snow.css";
+import "react-datepicker/dist/react-datepicker.css";
+import ReactDatePicker from "react-datepicker";
 
 const PostForm = ({ action, actionText, ...props }) => {
   const [title, setTitle] = useState(props.title || "");
@@ -37,10 +39,9 @@ const PostForm = ({ action, actionText, ...props }) => {
       </Form.Group>
       <Form.Group className="m-auto w-75 p-3">
         <Form.Label>Published</Form.Label>
-        <Form.Control
-          value={publishedDate}
-          onChange={(e) => setPublishedDate(e.target.value)}
-          placeholder="dd-mm-yyyy"
+        <ReactDatePicker
+          selected={publishedDate}
+          onChange={(publishedDate) => setPublishedDate(publishedDate)}
         />
       </Form.Group>
       <Form.Group className="m-auto w-75 p-3">
