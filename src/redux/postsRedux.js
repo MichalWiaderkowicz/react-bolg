@@ -1,9 +1,12 @@
 import shortid from "shortid";
+import pathToCategory from "../utils/pathToCategory";
 
 //selectors
 export const getAllPosts = (state) => state.posts;
 export const getPost = ({ posts }, postId) =>
   posts.find((post) => post.id === postId);
+export const getPostByCategory = ({ posts }, postCategory) =>
+  posts.filter((post) => pathToCategory(post.category) === postCategory);
 // actions
 const createActionName = (actionName) => `app/posts/${actionName}`;
 const POST_REMOVE = createActionName("POST_REMOVE");

@@ -47,6 +47,10 @@ const Post = () => {
             Published:
             {dateStr}
           </p>
+          <p className="mb-0">
+            <span>Category: </span>
+            {post.category}
+          </p>
           <br />
           <p
             className="mb-0"

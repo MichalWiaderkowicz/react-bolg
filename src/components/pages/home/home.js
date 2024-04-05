@@ -1,8 +1,11 @@
+import { useSelector } from "react-redux";
 import { Button } from "react-bootstrap";
 import Posts from "../../Features/Posts/Posts";
 import { NavLink } from "react-router-dom";
+import { getAllPosts } from "../../../redux/postsRedux";
 
 const Home = (props) => {
+  const posts = useSelector(getAllPosts);
   return (
     <div>
       <div className="d-flex justify-content-between mb-4">
@@ -11,7 +14,7 @@ const Home = (props) => {
           Add Post
         </Button>
       </div>
-      <Posts />
+      <Posts posts={posts} />
     </div>
   );
 };

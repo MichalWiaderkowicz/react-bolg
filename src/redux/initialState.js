@@ -7,6 +7,7 @@ const initialState = {
       content: "Main content of the article",
       publishedDate: new Date("01-10-1991"),
       author: "John Doe",
+      category: "News",
     },
     {
       id: "2",
@@ -15,6 +16,7 @@ const initialState = {
       content: "Main content of the article",
       publishedDate: new Date("03-03-1991"),
       author: "John Doe",
+      category: "Sport",
     },
     {
       id: "3",
@@ -23,6 +25,7 @@ const initialState = {
       content: "Main content of the article",
       publishedDate: new Date("11-09-2001"),
       author: "John Doe",
+      category: "Movies",
     },
   ],
   categories: [

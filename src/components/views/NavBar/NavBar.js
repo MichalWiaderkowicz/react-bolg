@@ -24,6 +24,13 @@ export const NavBar = () => {
           </Nav.Link>
           <Nav.Link
             as={NavLink}
+            to="/categories"
+            className={location.pathname === "/categories" ? "active" : ""}
+          >
+            Categories
+          </Nav.Link>
+          <Nav.Link
+            as={NavLink}
             to="/about"
             className={location.pathname === "/about" ? "active" : ""}
           >

@@ -1,12 +1,8 @@
-import { useSelector } from "react-redux";
-import { getAllPosts } from "../../../redux/postsRedux";
 import { Button, Card, Col, Row } from "react-bootstrap";
 import { NavLink } from "react-router-dom";
 import dateToStr from "../../../utils/dateToStr";
 
-const Posts = () => {
-  const posts = useSelector(getAllPosts);
-
+const Posts = ({ posts }) => {
   const stringDate = (date) => {
     return dateToStr(date);
   };
@@ -27,6 +23,10 @@ const Posts = () => {
                   <p className="mb-0">
                     <span>Published: </span>
                     {stringDate(post.publishedDate)}
+                  </p>
+                  <p className="mb-0">
+                    <span>Category: </span>
+                    {post.category}
                   </p>
                   <br />
                   <p className="mb-0">{post.shortDescription}</p>
