@@ -6,6 +6,8 @@ import "react-quill/dist/quill.snow.css";
 import "react-datepicker/dist/react-datepicker.css";
 import ReactDatePicker from "react-datepicker";
 import { useForm } from "react-hook-form";
+import { getAllCategories } from "../../../redux/categoriesRedux";
+import { useSelector } from "react-redux";
 
 const PostForm = ({ action, actionText, ...props }) => {
   const [title, setTitle] = useState(props.title || "");
@@ -35,9 +37,11 @@ const PostForm = ({ action, actionText, ...props }) => {
     formState: { errors },
   } = useForm();
 
+  const categories = useSelector(getAllCategories);
+
   return (
     <Form onSubmit={validate(handleSubmit)}>
-      <Form.Group className="mb-3" controlId="formBasicEmail">
+      <Form.Group className="m-auto w-75 p-3" controlId="formBasicEmail">
         <Form.Label>Title</Form.Label>
         <Form.Control
           {...register("title", { required: true, minLength: 3 })}
@@ -78,6 +82,15 @@ const PostForm = ({ action, actionText, ...props }) => {
             This field is required
           </small>
         )}
+      </Form.Group>
+      <Form.Group className="m-auto w-75 p-3">
+        <Form.Label>Category</Form.Label>
+        <Form.Select aria-label="Default select example">
+          <option>Select category...</option>
+          {categories.map((category) => (
+            <option value={category.id}>{category.name}</option>
+          ))}
+        </Form.Select>
       </Form.Group>
       <Form.Group className="m-auto w-75 p-3">
         <Form.Label>Short description</Form.Label>

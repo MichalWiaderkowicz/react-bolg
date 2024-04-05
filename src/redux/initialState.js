@@ -25,7 +25,20 @@ const initialState = {
       author: "John Doe",
     },
   ],
-  categories: ["Sport", "News", "Movies"],
+  categories: [
+    {
+      id: 1,
+      name: "Sport",
+    },
+    {
+      id: 2,
+      name: "News",
+    },
+    {
+      id: 3,
+      name: "Movies",
+    },
+  ],
 };
 
 export default initialState;
