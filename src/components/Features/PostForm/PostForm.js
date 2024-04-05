@@ -5,6 +5,7 @@ import ReactQuill from "react-quill";
 import "react-quill/dist/quill.snow.css";
 import "react-datepicker/dist/react-datepicker.css";
 import ReactDatePicker from "react-datepicker";
+import { useForm } from "react-hook-form";
 
 const PostForm = ({ action, actionText, ...props }) => {
   const [title, setTitle] = useState(props.title || "");
@@ -15,27 +16,47 @@ const PostForm = ({ action, actionText, ...props }) => {
   );
   const [content, setContent] = useState(props.content || "");
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
+  const handleSubmit = () => {
     action({ title, author, publishedDate, shortDescription, content });
   };
+
+  const {
+    register,
+    handleSubmit: validate,
+    formState: { errors },
+  } = useForm();
+
   return (
-    <Form onSubmit={handleSubmit}>
-      <Form.Group className="m-auto w-75 p-3">
+    <Form onSubmit={validate(handleSubmit)}>
+      <Form.Group className="mb-3" controlId="formBasicEmail">
         <Form.Label>Title</Form.Label>
         <Form.Control
+          {...register("title", { required: true, minLength: 3 })}
           value={title}
           onChange={(e) => setTitle(e.target.value)}
+          type="text"
           placeholder="Enter title"
         />
+        {errors.title && (
+          <small className="d-block form-text text-danger mt-2">
+            Title is too short (min is 3)
+          </small>
+        )}
       </Form.Group>
       <Form.Group className="m-auto w-75 p-3">
         <Form.Label>Author</Form.Label>
         <Form.Control
+          {...register("author", { required: true, minLength: 3 })}
           value={author}
           onChange={(e) => setAuthor(e.target.value)}
+          type="text"
           placeholder="Enter author"
         />
+        {errors.title && (
+          <small className="d-block form-text text-danger mt-2">
+            Author is too short (min is 3)
+          </small>
+        )}
       </Form.Group>
       <Form.Group className="m-auto w-75 p-3">
         <Form.Label>Published</Form.Label>
@@ -47,12 +68,18 @@ const PostForm = ({ action, actionText, ...props }) => {
       <Form.Group className="m-auto w-75 p-3">
         <Form.Label>Short description</Form.Label>
         <Form.Control
+          {...register("shortDescription", { required: true, minLength: 20 })}
           value={shortDescription}
           onChange={(e) => setShortDescription(e.target.value)}
           placeholder="Leave a comment here"
           as="textarea"
           rows={2}
         />
+        {errors.shortDescription && (
+          <small className="d-block form-text text-danger mt-2">
+            Short description is too short (min is 20)
+          </small>
+        )}
       </Form.Group>
       <Form.Group className="m-auto w-75 p-3">
         <Form.Label>Main content</Form.Label>
